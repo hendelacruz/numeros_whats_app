@@ -32,54 +32,56 @@ class _PaginaAgregarNumerosState extends State<PaginaAgregarNumeros> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Form(
-        key: _idForm,
-        child: Column(
-          spacing: 8,
-          children: [
-            InputPersonalizado(
-              label: 'Ingrese número de telefono',
-              keyboardType: TextInputType.phone,
-              inputFormatters: [_maskNumero],
-              validator: (valor) => RequiredValidator(
-                      errorText: 'El numero de teléfono es requerido')
-                  .call(valor),
-              controller: _numeroTelefonoController,
-            ),
-            InputPersonalizado(
-              controller: _descripcionController,
-              maxLength: 20,
-              autocorrect: false,
-              label: 'Descripción',
-              validator: (valor) =>
-                  RequiredValidator(errorText: 'La descripcion es requerida')
-                      .call(valor),
-            ),
-            InputPersonalizado(
-              controller: _mensajeOpcionalController,
-              maxLength: 20,
-              autocorrect: false,
-              label: 'Mensaje Inicial',
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                _agregarNumero(
-                  despuesDeAgregar: (numeroDeTelofono) {
-                    numeroDeTelofono.abrirEnWhatsApp();
-                  },
-                );
-              },
-              icon: Icon(Icons.person_add),
-              label: Text('Abrir en WA'),
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                _agregarNumero();
-              },
-              icon: Icon(Icons.save),
-              label: Text('Guardar número'),
-            ),
-          ],
+      child: SingleChildScrollView(
+        child: Form(
+          key: _idForm,
+          child: Column(
+            spacing: 8,
+            children: [
+              InputPersonalizado(
+                label: 'Ingrese número de telefono',
+                keyboardType: TextInputType.phone,
+                inputFormatters: [_maskNumero],
+                validator: (valor) => RequiredValidator(
+                        errorText: 'El numero de teléfono es requerido')
+                    .call(valor),
+                controller: _numeroTelefonoController,
+              ),
+              InputPersonalizado(
+                controller: _descripcionController,
+                maxLength: 20,
+                autocorrect: false,
+                label: 'Descripción',
+                validator: (valor) =>
+                    RequiredValidator(errorText: 'La descripcion es requerida')
+                        .call(valor),
+              ),
+              InputPersonalizado(
+                controller: _mensajeOpcionalController,
+                maxLength: 20,
+                autocorrect: false,
+                label: 'Mensaje Inicial',
+              ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  _agregarNumero(
+                    despuesDeAgregar: (numeroDeTelofono) {
+                      numeroDeTelofono.abrirEnWhatsApp();
+                    },
+                  );
+                },
+                icon: Icon(Icons.person_add),
+                label: Text('Abrir en WA'),
+              ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  _agregarNumero();
+                },
+                icon: Icon(Icons.save),
+                label: Text('Guardar número'),
+              ),
+            ],
+          ),
         ),
       ),
     );
